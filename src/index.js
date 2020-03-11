@@ -39,6 +39,7 @@ const mainRoutes = (
         />
       )}
     />
+    <div>{ AUTH_CONFIG.domain }</div>
   </Router>
 );
 
