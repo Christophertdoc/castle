@@ -13,7 +13,6 @@
 
 # misc
 .DS_Store
-.env
 /src/components/Auth/auth0-variables.js
 .env.local
 .env.development.local
