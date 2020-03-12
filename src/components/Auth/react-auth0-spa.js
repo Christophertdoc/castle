@@ -41,18 +41,18 @@ export const Auth0Provider = ({ children, onRedirectCallback = DEFAULT_REDIRECT_
 	}, [])
 
 	const loginWithPopup = async (params = {}) => {
-		setPopupOpen(true);
+		setPopupOpen(true)
 		try {
-		await auth0Client.loginWithPopup(params);
+			await auth0Client.loginWithPopup(params)
 		} catch (error) {
-		console.error(error);
+			console.error(error)
 		} finally {
-		setPopupOpen(false);
+			setPopupOpen(false)
 		}
-		const user = await auth0Client.getUser();
-		setUser(user);
-		setIsAuthenticated(true);
-	};
+		const user = await auth0Client.getUser()
+		setUser(user)
+		setIsAuthenticated(true)
+	}
 
 	const handleRedirectCallback = async () => {
 		setLoading(true);
