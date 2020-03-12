@@ -55,61 +55,61 @@ export const Auth0Provider = ({ children, onRedirectCallback = DEFAULT_REDIRECT_
 	}
 
 	const handleRedirectCallback = async () => {
-		setLoading(true);
-		const result = await auth0Client.handleRedirectCallback();
-		const user = await auth0Client.getUser();
-		const idTokenClaims = await auth0Client.getIdTokenClaims();
-		setIdToken(idTokenClaims.__raw);
-
-		setLoading(false);
-		setIsAuthenticated(true);
-		setUser(user);
-		return result;
-	};
+		setLoading(true)
+		const result = await auth0Client.handleRedirectCallback()
+		const user = await auth0Client.getUser()
+		const idTokenClaims = await auth0Client.getIdTokenClaims()
+		setIdToken(idTokenClaims.__raw)
+		setLoading(false)
+		setIsAuthenticated(true)
+		setUser(user)
+		return result
+	}
 
 	if (loading) {
-		return <Callback />;
+		return <Callback />
 	}
+
 	if (!isAuthenticated) {
 		return (
-		<Auth0Context.Provider
-			value={{
-			isAuthenticated,
-			user,
-			loading,
-			popupOpen,
-			loginWithPopup,
-			handleRedirectCallback,
-			getIdTokenClaims: (...p) => auth0Client.getIdTokenClaims(...p),
-			loginWithRedirect: (...p) => auth0Client.loginWithRedirect(...p),
-			getTokenSilently: (...p) => auth0Client.getTokenSilently(...p),
-			getTokenWithPopup: (...p) => auth0Client.getTokenWithPopup(...p),
-			logout: (...p) => auth0Client.logout(...p)
-			}}
-		>
-			<Login />
-		</Auth0Context.Provider>
-		);
+			<Auth0Context.Provider
+				value={{
+					isAuthenticated,
+					user,
+					loading,
+					popupOpen,
+					loginWithPopup,
+					handleRedirectCallback,
+					getIdTokenClaims: (...p) => auth0Client.getIdTokenClaims(...p),
+					loginWithRedirect: (...p) => auth0Client.loginWithRedirect(...p),
+					getTokenSilently: (...p) => auth0Client.getTokenSilently(...p),
+					getTokenWithPopup: (...p) => auth0Client.getTokenWithPopup(...p),
+					logout: (...p) => auth0Client.logout(...p)
+				}}
+			>
+				<Login />
+			</Auth0Context.Provider>
+		)
 	}
 
 	return (
 		<Auth0Context.Provider
-		value={{
-			isAuthenticated,
-			user,
-			loading,
-			popupOpen,
-			loginWithPopup,
-			handleRedirectCallback,
-			getIdTokenClaims: (...p) => auth0Client.getIdTokenClaims(...p),
-			loginWithRedirect: (...p) => auth0Client.loginWithRedirect(...p),
-			getTokenSilently: (...p) => auth0Client.getTokenSilently(...p),
-			getTokenWithPopup: (...p) => auth0Client.getTokenWithPopup(...p),
-			logout: (...p) => auth0Client.logout(...p)
-		}}
+			value={{
+				isAuthenticated,
+				user,
+				loading,
+				popupOpen,
+				loginWithPopup,
+				handleRedirectCallback,
+				getIdTokenClaims: (...p) => auth0Client.getIdTokenClaims(...p),
+				loginWithRedirect: (...p) => auth0Client.loginWithRedirect(...p),
+				getTokenSilently: (...p) => auth0Client.getTokenSilently(...p),
+				getTokenWithPopup: (...p) => auth0Client.getTokenWithPopup(...p),
+				logout: (...p) => auth0Client.logout(...p)
+			}}
 		>
-		{children}
-		<App idToken={idToken} />
+			{children}
+			<App idToken={idToken} />
 		</Auth0Context.Provider>
-	);
-};
+	)
+}
